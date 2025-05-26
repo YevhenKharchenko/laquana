@@ -1,24 +1,11 @@
 .header {
   background: transparent;
-  padding-top: 14px;
-  padding-bottom: 14px;
+  padding-top: 20px;
+  padding-bottom: 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 10;
-
-  &.scrolled {
-    background: #7c3ed2;
-
-    .nav-list-link {
-      color: #fffafa;
-
-      &:hover,
-      &.active {
-        color: #ffb84d;
-      }
-    }
-  }
 
   @include media(desktop) {
     padding-top: 32px;
@@ -27,17 +14,24 @@
 }
 
 .header-container {
-  padding: 0 42px;
-
-  @include media(desktop) {
-    padding: 0 80px;
-  }
 }
 
 .nav {
+  background: transparent;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: end;
+
+  @include media(desktop) {
+    background: #fff;
+    border-radius: 20px;
+    gap: 40px;
+    padding: 15px 110px;
+  }
+}
+
+.header-logo {
+  display: none;
 
   @include media(desktop) {
     display: block;
@@ -51,19 +45,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
 }
 
 .nav-list-link {
   font-family: 'Quicksand', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 20px;
   line-height: 1.5;
-  color: #fffafa;
+  color: #000;
   transition: all 0.3s ease-in-out;
 }
 
 .nav-list-link.active {
+  font-weight: 700;
 }
 
 .privacy-body .nav-list-link {
@@ -74,9 +70,13 @@
 }
 
 .nav-btn {
-  background-color: transparent;
-  width: 48px;
-  height: 48px;
+  background: #fff;
+  border-radius: 19px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @include media(desktop) {
     display: none;
@@ -84,6 +84,7 @@
 }
 
 .menu-icon {
+  stroke: #000;
 }
 
 .menu-icon-scrolled {

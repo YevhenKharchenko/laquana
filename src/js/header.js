@@ -4,20 +4,6 @@ const closeContextBtn = document.querySelector('.close-btn');
 const header = document.querySelector('.header');
 const menuIcon = document.querySelector('.menu-icon');
 
-function updateHeaderState() {
-  const scrolled = window.scrollY > 0;
-
-  if (scrolled) {
-    header.classList.add('scrolled');
-    menuIcon.classList.add('menu-icon-scrolled');
-  } else {
-    header.classList.remove('scrolled');
-    menuIcon.classList.remove('menu-icon-scrolled');
-  }
-}
-
-window.addEventListener('scroll', updateHeaderState);
-
 menuBtn.addEventListener('click', onMenuButtonClick);
 
 let contextMenuIsOpen = false;
@@ -30,8 +16,6 @@ function onMenuButtonClick() {
   menuBtn.classList.add('closed');
   closeContextBtn.classList.add('is-open');
 
-  updateHeaderState();
-
   contextMenu.addEventListener('click', onContextMenuLinkClick);
   closeContextBtn.addEventListener('click', onCloseContextButtonClick);
   document.addEventListener('click', onOutsideMenuClick);
@@ -42,8 +26,6 @@ function onCloseContextButtonClick() {
   contextMenu.classList.remove('is-open');
   closeContextBtn.classList.remove('is-open');
   menuBtn.classList.remove('closed');
-
-  updateHeaderState();
 
   contextMenu.removeEventListener('click', onContextMenuLinkClick);
   closeContextBtn.removeEventListener('click', onCloseContextButtonClick);
