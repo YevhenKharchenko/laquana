@@ -1,82 +1,31 @@
-import Swiper from 'swiper';
-import 'swiper/css/bundle';
+const gallerySlides = document.querySelectorAll('.gallery-list-item');
+const galleryBtn = document.getElementById('galleryDownArrow');
+const galleyBtnIcon = galleryBtn.querySelector('.arrow-icon');
+let currentIndex = 0;
+let direction = 'forward';
 
-const galleryLeftArrow = document.getElementById('galleryLeftArrow');
-const galleryRightArrow = document.getElementById('galleryRightArrow');
-const galleryDots = document.querySelectorAll('.dot');
+function updateGallerySlides() {
+  gallerySlides.forEach((slide, i) => {
+    slide.style.display =
+      i >= currentIndex && i < currentIndex + 2 ? 'block' : 'none';
+  });
 
-let gallerySwiper;
-
-gallerySwiper = new Swiper('.gallery-swiper-container', {
-  direction: 'horizontal',
-  loop: false,
-  grabCursor: true,
-  slidesPerView: 1,
-  initialSlide: 0,
-  spaceBetween: 20,
-  grabCursor: true,
-  allowTouchMove: true,
-  speed: 500,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    1440: {
-      slidesPerView: 4,
-    },
-  },
-  on: {
-    init: () => {
-      document.querySelector('.gallery-swiper-container').classList.add('show');
-    },
-    slideChange: function () {
-      updateGalleryDots(this.realIndex);
-      updateGalleryArrows(this);
-    },
-  },
-});
-
-updateGalleryArrows(gallerySwiper);
-
-function updateGalleryDots(index) {
-  let dotIndex = 0;
-
-  if (window.innerWidth >= 1440) {
-    const totalSlides = gallerySwiper.slides.length;
-    const slidesPerView = gallerySwiper.params.breakpoints[1440].slidesPerView;
-
-    if (index === 0) {
-      dotIndex = 0;
-    } else if (index >= totalSlides - slidesPerView) {
-      dotIndex = 2;
-    } else {
-      dotIndex = 1;
-    }
-  } else {
-    dotIndex = index;
+  if (currentIndex + 2 >= gallerySlides.length) {
+    galleyBtnIcon.style.transform = 'rotate(180deg)';
+    direction = 'backward';
+  } else if (currentIndex <= 0) {
+    galleyBtnIcon.style.transform = 'rotate(0deg)';
+    direction = 'forward';
   }
-
-  galleryDots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === dotIndex);
-  });
 }
 
-function updateGalleryArrows(swiper) {
-  galleryLeftArrow.disabled = swiper.isBeginning;
-  galleryRightArrow.disabled = swiper.isEnd;
-}
-
-galleryDots.forEach((dot, index) => {
-  dot.addEventListener('click', () => {
-    gallerySwiper.slideTo(index);
-  });
+galleryBtn.addEventListener('click', () => {
+  if (direction === 'forward') {
+    currentIndex = Math.min(currentIndex + 2, gallerySlides.length - 1);
+  } else {
+    currentIndex = Math.max(currentIndex - 2, 0);
+  }
+  updateGallerySlides();
 });
 
-galleryLeftArrow.addEventListener('click', () => {
-  gallerySwiper.slidePrev();
-});
-
-galleryRightArrow.addEventListener('click', () => {
-  gallerySwiper.slideNext();
-});
+updateGallerySlides();

@@ -1,136 +1,57 @@
 .gallery-section {
-  @include media(desktop) {
-  }
+}
+
+.section-title {
 }
 
 .gallery-section-wrapper {
-  padding-bottom: 80px;
-  max-width: 375px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
+}
 
-  @include media(desktop) {
-    padding-bottom: 140px;
-    max-width: 1440px;
-    position: relative;
-  }
+.container {
 }
 
 .gallery-container {
-  padding-left: 0;
-  padding-right: 0;
 }
 
-.gallery-swiper-container {
-  max-width: 305px;
-  margin-left: auto;
-  margin-right: auto;
-  visibility: hidden;
+.gallery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
 
   @include media(desktop) {
-    max-width: 1440px;
+    display: none;
   }
 }
 
-.gallery-swiper-container.show {
-  visibility: visible;
+.arrow-btn {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 19px;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+
+  @include media(desktop) {
+    display: none;
+  }
 }
 
-.gallery-slide {
-  padding: 0;
-  max-width: 305px;
+.arrow-icon {
 }
 
-.controls {
+.gallery-list-desk {
   display: none;
 
   @include media(desktop) {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 28px;
-    gap: 12px;
+    gap: 16px;
   }
 }
 
-.arrow-btn {
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  transition: transform 0.3s ease-in-out;
-
-  &:active {
-    transform: scale(0.9);
-  }
-
-  @include media(desktop) {
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  &[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-
-    &:hover {
-      transform: none;
-    }
-  }
-}
-
-.dots {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.dot {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.3s ease-in-out;
-  border-radius: 100%;
-  background: rgba(255, 184, 77, 0.5);
-  cursor: pointer;
-}
-
-.dot.active {
-  background: #ffb84d;
-}
-
-.gallery-big-bubble-img {
-  display: none;
-
-  @include media(desktop) {
-    display: block;
-    position: absolute;
-    bottom: 12px;
-    right: 93px;
-  }
-}
-
-.gallery-medium-bubble-img {
-  display: none;
-
-  @include media(desktop) {
-    display: block;
-    position: absolute;
-    bottom: 97px;
-    left: 190px;
-  }
-}
-
-.gallery-small-bubble-img {
-  display: none;
-
-  @include media(desktop) {
-    display: block;
-    position: absolute;
-    bottom: 97px;
-    left: 272px;
-  }
+.gallery-list-item-desk {
 }
